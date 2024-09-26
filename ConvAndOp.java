@@ -25,7 +25,7 @@ public class ConvAndOp {
                     return op;
                 }
             }
-            return null; // Return null if no valid operator found
+            return null;
         }
     }
 
@@ -48,7 +48,7 @@ public class ConvAndOp {
                     return ns;
                 }
             }
-            return null; // Return null if no valid number system found
+            return null;
         }
 
         // Validate input based on the number system
@@ -70,21 +70,21 @@ public class ConvAndOp {
 
             // Handle user conversions
     public static void conversions(Scanner userInput) {
-        System.out.println("Enter the number to convert:");
+        System.out.println(Constants.CONVO_INPUT);
         String number = userInput.next();
 
 
-        System.out.println("Which number system is this number from? (binary, decimal, octal, hexadecimal): ");
+        System.out.println(Constants.FROM_NUM_SYSTEM);
 
         String fromSystemStr1 = userInput.next().toLowerCase();
         NumberSystem fromSystem1 = NumberSystem.fromString(fromSystemStr1);
 
         if (fromSystem1 == null || !fromSystem1.isValidInput(number)) {
-            System.out.println("Invalid input for the specified number system!");
+            System.out.println(Constants.INVALID_SYSTEM);
             return;
         }
 
-        System.out.println("Which system do you want to convert to? (binary, decimal, octal, hexadecimal): ");
+        System.out.println(Constants.TO_NUM_SYSTEM);
         String toSystem = userInput.next().toLowerCase();
 
         // Conversion logic
@@ -110,7 +110,7 @@ public class ConvAndOp {
                 convertToTargetSystem(decimalValueFromHex, toSystem);
                 break;
             default:
-                System.out.println("Invalid source number system!");
+                System.out.println(Constants.INVALID);
         }
     }
 
@@ -122,29 +122,29 @@ public class ConvAndOp {
             case BINARY:
                 decimalValue = binaryToDecimal(number);
                 if (showCalculations) {
-                    System.out.println("Binary to Decimal Calculation: " + number + " = " + decimalValue);
+                    System.out.println(Constants.BINARY_TO_DECIMAL + number + " = " + decimalValue);
                 }
                 break;
             case DECIMAL:
                 decimalValue = Integer.parseInt(number);
                 if (showCalculations) {
-                    System.out.println("Decimal Value: " + decimalValue);
+                    System.out.println(Constants.DECIMAL + decimalValue);
                 }
                 break;
             case OCTAL:
                 decimalValue = octalToDecimal(number);
                 if (showCalculations) {
-                    System.out.println("Octal to Decimal Calculation: " + number + " = " + decimalValue);
+                    System.out.println(Constants.OCTAL_TO_DECIMAL + number + " = " + decimalValue);
                 }
                 break;
             case HEXADECIMAL:
                 decimalValue = hexToDecimal(number);
                 if (showCalculations) {
-                    System.out.println("Hexadecimal to Decimal Calculation: " + number + " = " + decimalValue);
+                    System.out.println(Constants.HEX_T0_DECIMAL + number + " = " + decimalValue);
                 }
                 break;
             default:
-                return -1; // Indicates an error
+                return -1;
         }
         return decimalValue;
     }
@@ -154,24 +154,24 @@ public class ConvAndOp {
         switch (toSystem) {
             case "binary":
                 String binaryResult = decimalToBinary(decimalValue);
-                System.out.println("Conversion result: " + binaryResult);
+                System.out.println(Constants.CONVERSION + binaryResult);
 
                 break;
             case "octal":
                 String octalResult = decimalToOctal(decimalValue);
-                System.out.println("Conversion result: " + octalResult);
+                System.out.println(Constants.CONVERSION + octalResult);
 
                 break;
             case "hexadecimal":
                 String hexResult = decimalToHex(decimalValue);
-                System.out.println("Conversion result: " + hexResult);
+                System.out.println(Constants.CONVERSION + hexResult);
 
                 break;
             case "decimal":
-                System.out.println("Conversion result: " + decimalValue);
+                System.out.println(Constants.CONVERSION+ decimalValue);
                 break;
             default:
-                System.out.println("Invalid target system!");
+                System.out.println(Constants.INVALID_TARGET);
         }
     }
 
@@ -251,36 +251,36 @@ public class ConvAndOp {
 
     // Handle basic arithmetic operations
     public static void handleOperations(Scanner input) {
-        System.out.println("Enter the first number:");
+        System.out.println(Constants.FIRST_INPUT_OPERATIONS);
         String num1 = input.next();
 
-        System.out.println("Enter the number system of the first number (binary, octal, decimal, hexadecimal):");
+        System.out.println(Constants.OP_NUM_SYSTEM);
         String fromSystemStr1 = input.next().toLowerCase();
         NumberSystem fromSystem1 = NumberSystem.fromString(fromSystemStr1);
 
         if (fromSystem1 == null || !fromSystem1.isValidInput(num1)) {
-            System.out.println("Invalid input for the specified number system!");
+            System.out.println(Constants.INVALID_SYSTEM);
             return;
         }
 
-        System.out.println("Enter the operator (+, -, *, /):");
+        System.out.println(Constants.OPERATOR);
         char operatorSymbol = input.next().charAt(0);
 
         Operator operator = Operator.getOperator(operatorSymbol);
         if (operator == null) {
-            System.out.println("Invalid operator! Please enter one of (+, -, *, /).");
+            System.out.println(Constants.INVALID_OPERATOR);
             return;
         }
 
-        System.out.println("Enter the second number:");
+        System.out.println(Constants.SECOND_INPUT_OPERATIONS);
         String num2 = input.next();
 
-        System.out.println("Enter the number system of the second number (binary, octal, decimal, hexadecimal):");
+        System.out.println(Constants.OP_NUM_SYSTEM);
         String fromSystemStr2 = input.next().toLowerCase();
         NumberSystem fromSystem2 = NumberSystem.fromString(fromSystemStr2);
 
         if (fromSystem2 == null || !fromSystem2.isValidInput(num2)) {
-            System.out.println("Invalid input for the specified number system!");
+            System.out.println(Constants.INVALID_SYSTEM);
             return;
         }
 
@@ -304,21 +304,21 @@ public class ConvAndOp {
                 if (decimalNum2 != 0) {
                     result = decimalNum1 / decimalNum2;
                 } else {
-                    System.out.println("Cannot divide by zero!");
+                    System.out.println(Constants.DIVIDE_BY_ZERO);
                     return;
                 }
                 break;
         }
 
         // Show the result
-        System.out.println("Result in decimal: " + result);
+        System.out.println(Constants.RESULT_DECIMAL + result);
 
         // Convert result back to the desired number system (if needed)
-        System.out.println("Convert result to which number system? (binary, octal, hexadecimal):");
+        System.out.println(Constants.NUM_SYSTEM_RESULT);
         String toSystemStr = input.next().toLowerCase();
         NumberSystem toSystem = NumberSystem.fromString(toSystemStr);
         String convertedResult = convertFromDecimal(result, toSystem);
-        System.out.println("Result in " + toSystemStr + ": " + convertedResult);
+        System.out.println( Constants.RESULT+ toSystemStr + ": " + convertedResult);
     }
     // Convert a number from various systems to decimal
     public static int convertToDecimal(String number, NumberSystem fromSystem) {
@@ -351,7 +351,7 @@ public class ConvAndOp {
                 }
                 break;
             default:
-                System.out.println("Invalid number system!");
+                System.out.println(Constants.INVALID_NUM_SYSTEM);
                 break;
         }
 
@@ -360,48 +360,48 @@ public class ConvAndOp {
 
     // Convert a decimal number to various systems
     public static String convertFromDecimal(int decimal, NumberSystem toSystem) {
-        String result = ""; // Initialize an empty string to build the result
+        String result = "";
 
         switch (toSystem) {
             case BINARY:
                 if (decimal == 0) {
-                    return "0"; // Handle the case where the input is 0
+                    return "0";
                 }
                 while (decimal > 0) {
-                    result = (decimal % 2) + result; // Prepend the new digit
+                    result = (decimal % 2) + result;
                     decimal /= 2;
                 }
                 break;
             case OCTAL:
                 if (decimal == 0) {
-                    return "0"; // Handle the case where the input is 0
+                    return "0";
                 }
                 while (decimal > 0) {
-                    result = (decimal % 8) + result; // Prepend the new digit
+                    result = (decimal % 8) + result;
                     decimal /= 8;
                 }
                 break;
             case HEXADECIMAL:
                 if (decimal == 0) {
-                    return "0"; // Handle the case where the input is 0
+                    return "0";
                 }
                 char[] hexChars = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
                 while (decimal > 0) {
-                    result = hexChars[decimal % 16] + result; // Prepend the new digit
+                    result = hexChars[decimal % 16] + result;
                     decimal /= 16;
                 }
                 break;
             case DECIMAL:
-                return Integer.toString(decimal); // You can keep this as is
+                return Integer.toString(decimal);
             default:
-                System.out.println("Invalid number system!");
+                System.out.println(Constants.INVALID_NUM_SYSTEM);
                 break;
         }
 
         if (result.length() == 0) {
-            return "0"; // If the result is empty, return "0"
+            return "0";
         }
-        return result; // Return the constructed string
+        return result;
     }
 }
 

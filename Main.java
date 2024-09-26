@@ -15,29 +15,25 @@ public class Main {
         boolean action = true;
 
         while (action) {
-            System.out.println("Hey User!!");
-            System.out.println("What do you wanna perform?");
-            System.out.println("1. Conversions");
-            System.out.println("2. Operations");
-            System.out.println("3. Exit");
-
+            System.out.println(Constants.WELCOME);
+            System.out.println(Constants.MENU);
             String input = userInput.next();
 
             switch (input) {
                 case "1":
-                    System.out.println("You chose Conversions!");
+                    System.out.println(Constants.CONVO);
                     performConversion(userInput);
                     break;
                 case "2":
-                    System.out.println("You chose Operations!");
+                    System.out.println(Constants.OP);
                     performOperations(userInput);
                     break;
                 case "3":
-                    System.out.println("Exiting... Goodbye!");
+                    System.out.println(Constants.EXIT);
                     userInput.close();
                     return;
                 default:
-                    System.out.println("Invalid option! Please enter 1, 2, or 3.");
+                    System.out.println(Constants.INVALID_CHOICE);
             }
         }
     }
@@ -61,7 +57,7 @@ public class Main {
     }
 
     private static boolean playAgain(Scanner userInput) {
-        System.out.println("Do you want to perform another action? (y/yes or n/no)");
+        System.out.println(Constants.PLAY_AGAIN);
         String response = userInput.next().toLowerCase();
 
         switch (response) {
@@ -70,10 +66,10 @@ public class Main {
                 return true;
             case "n":
             case "no":
-                System.out.println("Returning to the main menu...");
+                System.out.println(Constants.MAIN_MENU);
                 return false;
             default:
-                System.out.println("Invalid input, returning to main menu.");
+                System.out.println(Constants.RESPONSE);
                 return false;
         }
     }
